@@ -11,54 +11,66 @@ public:
 	vector<vector <int>> v2;
 	void inputSettingArr();
 	void makeDoubleVector();
+	void printPage1();
 	void init();
 };
 
-// 초기 배열 input 진행
-void Qm::inputSettingArr() {
+void Qm::inputSettingArr() {      // 초기 배열 input 진행
 	int num = 0;
 	for (int i = 0; i < 16; i++) {
 		cout << i  << "번째 입력 : ";
 		cin >> num;
 		inputArr[i] = num;
-		if (num == 1) {  // num이 1이라면 벡터에 i를 추가해서 어느 수가 선택되었는지 알 수 있게 한다.
+		if (num == 1) {     // num이 1이라면 벡터에 i를 추가해서 어느 수가 선택되었는지 알 수 있게 한다.
 			v.push_back(i);
 		}
 	}
 }
 
-// 벡터에 있는 10진수 값들을 하나씩 뽑아서 2진수로 변환하는 과정을 거쳐 2차원 벡터에 넣어준다.
-void Qm::makeDoubleVector() {
+void Qm::makeDoubleVector() {       // 벡터에 있는 10진수 값들을 하나씩 뽑아서 2진수로 변환하는 과정을 거쳐 2차원 벡터에 넣어준다.
 	for (int i = 0; i < v.size(); i++) {
 		vector<int> binary;
 		int n = v[i];
-		for (int i = 0; i < 4; i++){
+		for (int i = 0; i < 4; i++){  // 10진수 --> 2진수
 			binary.insert(binary.begin(), n % 2);
 			n /= 2;
 		}
-		for (int j = 0; j < binary.size(); j++) {
-			cout << binary[j] << " ";
-		}
-		cout << "\n";
 		v2.push_back(binary);
 	}
 
-	// v2 print
-	cout << "\n";
-	for (int i = 0; i < v2.size(); i++) {
-		for (int j = 0; j < v2[i].size(); j++) {
-			cout << v2[i][j] << " ";
+	//cout << "\n";   // 예비 출력부
+	//for (int i = 0; i < v2.size(); i++) {
+	//	for (int j = 0; j < v2[i].size(); j++) {
+	//		cout << v2[i][j] << " ";
+	//	}
+	//	cout << endl;
+	//}
+}
+
+// 2차원 벡터가 완성되었으니 1페이지 출력부 만들기
+void Qm::printPage1() {
+	cout << "    " << "   A  " << "B" << "  C" << "  D  " << endl;
+	cout << "--------------------------------------------------" << endl;
+	for (int i = 0; i < v.size(); i++) {
+		
+		if (v[i] < 10) {
+			cout << " " << v[i] << " " << " |  " << v2[i][0] << "  " << v2[i][1] << "  " << v2[i][2] << "  " << v2[i][3] << endl;
 		}
-		cout << endl;
+		else {
+			cout << " " << v[i] << " " << "|  " << v2[i][0] << "  " << v2[i][1] << "  " << v2[i][2] << "  " << v2[i][3] << endl;
+		}
 	}
+
 }
 
 void Qm::init() {
 	inputSettingArr();
 	makeDoubleVector();
+	printPage1();
 }
 
 int main() {
 	Qm nm;
 	nm.init();
+	return 0;
 }
