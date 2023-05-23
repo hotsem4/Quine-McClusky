@@ -37,22 +37,13 @@ void Qm::makeDoubleVector() {       // 벡터에 있는 10진수 값들을 하나씩 뽑아서 2
 		}
 		v2.push_back(binary);
 	}
-
-	//cout << "\n";   // 예비 출력부
-	//for (int i = 0; i < v2.size(); i++) {
-	//	for (int j = 0; j < v2[i].size(); j++) {
-	//		cout << v2[i][j] << " ";
-	//	}
-	//	cout << endl;
-	//}
 }
 
-// 2차원 벡터가 완성되었으니 1페이지 출력부 만들기
-void Qm::printPage1() {
+
+void Qm::printPage1() {    // 2차원 벡터가 완성되었으니 1페이지 출력부 만들기
 	cout << "    " << "   A  " << "B" << "  C" << "  D  " << endl;
 	cout << "--------------------------------------------------" << endl;
 	for (int i = 0; i < v.size(); i++) {
-		
 		if (v[i] < 10) {
 			cout << " " << v[i] << " " << " |  " << v2[i][0] << "  " << v2[i][1] << "  " << v2[i][2] << "  " << v2[i][3] << endl;
 		}
@@ -60,8 +51,10 @@ void Qm::printPage1() {
 			cout << " " << v[i] << " " << "|  " << v2[i][0] << "  " << v2[i][1] << "  " << v2[i][2] << "  " << v2[i][3] << endl;
 		}
 	}
-
 }
+
+// 1의 원소의 갯수 별로 grouping 작업을 실시해야 한다.
+
 
 void Qm::init() {
 	inputSettingArr();
@@ -74,3 +67,8 @@ int main() {
 	nm.init();
 	return 0;
 }
+
+/*
+v[i]는 v2[i][]의 10진수
+v2[i][]는 v[i]의 2진수
+*/
