@@ -15,6 +15,7 @@ public:
 	void makeDoubleVector();
 	void printPage1();
 	void copyVector();
+	void sortV3();
 	void printV3();
 	void init();
 };
@@ -84,11 +85,19 @@ void Qm::printV3() {
 
 // 1의 원소의 갯수 별로 grouping 작업을 실시해야 한다.
 
+void Qm::sortV3() {  // v3[i][1]
+	sort(v3.begin(), v3.end(),[](const vector<int>& a, const vector<int>& b) {
+			return a[1] < b[1];
+		});
+}
+
+
 void Qm::init() {
 	inputSettingArr();
 	makeDoubleVector();	
 	printPage1();
 	copyVector();
+	sortV3();
 	printV3();
 }
 
