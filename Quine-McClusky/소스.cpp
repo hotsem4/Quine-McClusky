@@ -16,7 +16,7 @@ public:
 	void printPage1();
 	void copyVector();
 	void sortV3();
-	void printV3();
+	void printPage2();
 	void init();
 };
 
@@ -44,7 +44,6 @@ void Qm::makeDoubleVector() {       // 벡터에 있는 10진수 값들을 하나씩 뽑아서 2
 	}
 }
 
-
 void Qm::printPage1() {    // 2차원 벡터가 완성되었으니 1페이지 출력부 만들기
 	cout << "    " << "   A  " << "B" << "  C" << "  D  " << endl;
 	cout << "-------------------" << endl;
@@ -59,8 +58,7 @@ void Qm::printPage1() {    // 2차원 벡터가 완성되었으니 1페이지 출력부 만들기
 }
 int countOnes(const vector<int>& v) { return count(v.begin(), v.end(), 1); }  // 배열 안에 1이 몇 개 있는지 카운팅 함수  --> 매개변수 단일 벡서 넣으면 1의 갯수로 반환
 
-// 우선 v3에 v2를 복사한다.
-void Qm::copyVector() {
+void Qm::copyVector() {    // 우선 v3에 v2를 복사한다.
 	v3 = v2;
 	for (int i = 0; i < v.size(); i++) {
 		v3[i].insert(v3[i].begin(), v[i]);
@@ -74,23 +72,20 @@ void Qm::copyVector() {
 	}
 }
 
-void Qm::printV3() {
-	for (int i = 0; i < v3.size(); i++) {
-		for (int j = 0; j < v3[i].size(); j++) {
-			cout << v3[i][j] << " ";
-		}
-		cout << endl;
-	}
-}
-
-// 1의 원소의 갯수 별로 grouping 작업을 실시해야 한다.
-
-void Qm::sortV3() {  // v3[i][1]
+void Qm::sortV3() {  // v3[i][1]을 기준으로 v3를 정렬한다.
 	sort(v3.begin(), v3.end(),[](const vector<int>& a, const vector<int>& b) {
 			return a[1] < b[1];
 		});
 }
 
+void Qm::printPage2() {    // 정렬된 v3를 보기 좋게 프린트한다.
+	for (int i = 0; i < v3.size(); i++) {
+		cout << v3[i][2] << "  " << v3[i][3] << "  " << v3[i][4] << "  " << v3[i][5] << "  " << "(" << v3[i][0] << ")" << endl;
+		if (i != v3.size() - 1 && v3[i][1] != v3[i + 1][1]) {
+			cout << "-----------------" << endl;
+		}
+	}
+}
 
 void Qm::init() {
 	inputSettingArr();
@@ -98,7 +93,7 @@ void Qm::init() {
 	printPage1();
 	copyVector();
 	sortV3();
-	printV3();
+	printPage2();
 }
 
 int main() {
